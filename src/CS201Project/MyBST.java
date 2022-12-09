@@ -1,5 +1,6 @@
-import java.util.ArrayList;
+package CS201Project;
 
+import java.util.ArrayList;
 class MyBST {
 	private class Node{
 		PeopleRecord record;

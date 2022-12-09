@@ -1,3 +1,8 @@
+package CS201Project;
+import com.sun.jdi.InterfaceType;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 
 class PeopleRecord {
 	private String givenName;
@@ -134,6 +139,41 @@ class PeopleRecord {
     // method to compare two record depending on all attributes
     // worst case is all attributes are equal
     //TODO: optimized way?
+   /* public int compareTo_recursive(PeopleRecord that,Field[] fieldsOfClass,int fieldsIterator)
+    {
+
+        if (fieldsIterator==fieldsOfClass.length)
+        {
+            return 0;
+        }
+        try{
+            Class fieldType=fieldsOfClass[fieldsIterator].getType();
+            Class[] interfaces=fieldType.getInterfaces();
+
+            for (Class i:interfaces){
+                if (i.getName()=="java.lang.Comparable"||i.isPrimitive()){
+
+
+                    if (fieldType.cast(fieldsOfClass[fieldsIterator].get(this)).compareTo(fieldType.cast(fieldsOfClass[fieldsIterator].get(that)))>0)
+                    {
+                        return 1;
+                    }
+                    if (fieldType.cast(fieldsOfClass[fieldsIterator].get(this)).compareTo(fieldType.cast(fieldsOfClass[fieldsIterator].get(that)))<0)
+                    {
+                        return -1;
+                    }
+                    return compareTo_recursive(that,fieldsOfClass,fieldsIterator+1);
+                }
+            }
+
+        }
+        catch(Exception e)
+        {
+
+        }
+
+        return compareTo_recursive(that,fieldsOfClass,fieldsIterator+1);
+    }*/
     public int compareTo(PeopleRecord that) {
     	int result = this.givenName.compareTo(that.givenName);
     	if(result == 0) {
@@ -181,6 +221,8 @@ class PeopleRecord {
     		}
     	}
     	return result;
+        //Field[] fieldsOfPeopleRecord = this.getClass().getFields();
+        //return compareTo_recursive(that,fieldsOfPeopleRecord,0);
     }
     
 }
