@@ -19,7 +19,7 @@ public class BSTGen<T extends Comparable<T>> {
 		}
 	}
 	
-	private Node root;
+	protected Node root;
 	private int countNodes;
 	
 	BSTGen(){
