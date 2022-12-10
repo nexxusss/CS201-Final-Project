@@ -1,6 +1,9 @@
+/* BST class designed for PeopleRecord*/
+
 package CS201Project;
 
 import java.util.ArrayList;
+
 class MyBST {
 	private class Node{
 		PeopleRecord record;

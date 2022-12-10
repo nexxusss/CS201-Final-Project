@@ -3,7 +3,7 @@ package CS201Project;
 //import java.lang.reflect.Constructor;
 //import java.lang.reflect.Field;
 
-class PeopleRecord {
+class PeopleRecord implements Comparable<PeopleRecord> {
 	private String givenName;
 	private String famName;
 	private String companyName;
@@ -174,49 +174,21 @@ class PeopleRecord {
         return compareTo_recursive(that,fieldsOfClass,fieldsIterator+1);
     }*/
     public int compareTo(PeopleRecord that) {
-    	int result = this.givenName.compareTo(that.givenName);
-    	if(result == 0) {
-    		result = this.famName.compareTo(that.famName);
-    		if(result == 0) {
-				result = this.companyName.compareTo(that.companyName);
-				if(result == 0) {
-					result = this.address.compareTo(that.address);
-					if(result == 0) {
-						result = this.city.compareTo(that.city);
-						if(result == 0) {
-							result = this.county.compareTo(that.county);
-							if(result == 0) {
-								result = this.state.compareTo(that.state);
-								if(result == 0) {
-									result = this.zip.compareTo(that.zip);
-									if(result == 0) {
-										result =this.phone1.compareTo(phone1);
-										if(result == 0) {
-											result =this.phone2.compareTo(phone2);
-											if(result == 0) {
-												result = this.email.compareTo(that.email);
-												if(result == 0) {
-													result = this.web.compareTo(that.web);
-														if(result == 0) {
-															result = this.birthday.compareTo(that.birthday);
-															if(result == 0) {
-																// in this case all attributes are equal
-																// meaning this entry already exists
-																System.out.println("[INFO]: Record already exists");
-    														}
-    													}
-    												}
-    											}
-    										}
-    									}
-    								}
-    							}
-    						}
-    					}
-    				}
-    			}
-    		}
-    	return result;
+        int result = this.givenName.compareTo(that.givenName);
+        if(result == 0) result = this.famName.compareTo(that.famName);
+        if(result == 0) result = this.companyName.compareTo(that.companyName);
+        if(result == 0) result = this.address.compareTo(that.address);
+        if(result == 0) result = this.city.compareTo(that.city);
+        if(result == 0) result = this.county.compareTo(that.county);
+        if(result == 0) result = this.state.compareTo(that.state);
+        if(result == 0) result = this.zip.compareTo(that.zip);
+        if(result == 0) result = this.phone1.compareTo(phone1);
+        if(result == 0) result = this.phone2.compareTo(phone2);
+        if(result == 0) result = this.email.compareTo(that.email);
+        if(result == 0) result = this.web.compareTo(that.web);
+        if(result == 0) result = this.birthday.compareTo(that.birthday);
+        if(result == 0) System.out.println("[INFO]: Record already exists");
+        return result;
         //Field[] fieldsOfPeopleRecord = this.getClass().getFields();
         //return compareTo_recursive(that,fieldsOfPeopleRecord,0);
     }
