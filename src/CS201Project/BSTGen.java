@@ -3,7 +3,9 @@
 
 package CS201Project;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 
 public class BSTGen<T extends Comparable<T>> {
@@ -28,20 +30,36 @@ public class BSTGen<T extends Comparable<T>> {
 	}
 	
 	public void insert(T record) {
-		root = insert(root, record);
+		if (root==null)
+		{
+			root= new Node<T>(record);
+			return;
+		}
+		insert(root, record);
 		countNodes++;
 	}
 	
-	public Node insert(Node node, T record) {
-        if (root == null) {
-            root = new Node<T>(record);
+	void insert(Node node, T record) {
+        if (node == null) {
+            node = new Node<T>(record);
+            return ;
         }
         if (record.compareTo((T) node.record) < 0) {
+        	if (node.left==null)
+			{
+				node.left=new Node<T>(record);
+				return;
+			}
             insert(node.left, record);
         } else {
+			if (node.right==null)
+			{
+				node.right=new Node<T>(record);
+				return;
+			}
             insert(node.right, record);
         }
-        return node;
+
     }
 	public ArrayList<Node> search(T record) {
         ArrayList<Node> result = new ArrayList<>();
@@ -60,7 +78,69 @@ public class BSTGen<T extends Comparable<T>> {
         search(node.left, record, result);
         search(node.right, record, result);
     }
-    
+    public void search(Field attribute, Object valueOfAttribute,Node<T>node,ArrayList<T> result)
+	{
+		if (node == null) {
+			return;
+		}
+		try
+		{
+			if (attribute.get(node.record).equals(valueOfAttribute)) {
+				result.add(node.record);
+			}
+		}
+		catch (Exception e)
+		{
+
+		}
+
+		search(attribute,valueOfAttribute,node.left, result);
+		search(attribute,valueOfAttribute,node.right, result);
+
+	}
+	public ArrayList<T> search (Field attribute,Object valueToFind)
+	{
+		ArrayList<T> result=new ArrayList<T>();
+		search(attribute,valueToFind,root,result);
+		return result;
+	}
+	public ArrayList<T> search(ArrayList<Field>attributes,ArrayList<Object>valuesToFind)
+	{
+		ArrayList<T> result=new ArrayList<T>();
+		if (attributes.size()!=valuesToFind.size())
+		{
+			System.out.println("Invalid search function parameters. The number of attributes must be equal to their value ");
+		}
+		search(attributes,valuesToFind,root,result);
+		return result;
+	}
+	public void search(ArrayList<Field>attributes,ArrayList<Object>valuesToFind,Node<T> node,ArrayList<T>result)
+	{
+		if (node == null) {
+			return;
+		}
+		try
+		{
+			for (int i =0 ; i < attributes.size(); i ++)
+			{
+				if (!attributes.get(i).get(node.record).equals(valuesToFind.get(i)))
+				{
+					break;
+				}
+				if (i==attributes.size()-1)
+				{
+					result.add(node.record);
+				}
+			}
+		}
+		catch (Exception e)
+		{
+
+		}
+
+		search(attributes,valuesToFind,node.left, result);
+		search(attributes,valuesToFind,node.right, result);
+	}
  // get height of the BST
  	// used in @getInfo
  	private int getHeight(Node<T> node) {
@@ -79,6 +159,20 @@ public class BSTGen<T extends Comparable<T>> {
  		int[] result = {countNodes, getHeight(root)};
  		return result;
  	}
-    
+    public void inorder()
+	{
+		inorder(root);
+	}
+	public void inorder(Node<T>node)
+	{
+		if (node==null)
+		{
+			return;
+		}
+		inorder(node.left);
+		System.out.println(node.record+" ");
+		inorder(node.right);
+	}
+
 
 }

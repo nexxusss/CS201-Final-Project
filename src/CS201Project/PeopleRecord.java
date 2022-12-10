@@ -4,7 +4,7 @@ package CS201Project;
 //import java.lang.reflect.Field;
 
 class PeopleRecord implements Comparable<PeopleRecord> {
-	private String givenName;
+	String givenName;
 	private String famName;
 	private String companyName;
 	private String address;
@@ -192,5 +192,14 @@ class PeopleRecord implements Comparable<PeopleRecord> {
         //Field[] fieldsOfPeopleRecord = this.getClass().getFields();
         //return compareTo_recursive(that,fieldsOfPeopleRecord,0);
     }
-    
+    @Override public String toString()
+    {
+        return "Given name: "+givenName+"\nFamily name: "+famName+"\nAdress: "+address+"\nCity: "+city+"\nCounty: "+county+"\nState: "+state+"\nZip: "+zip+"\nPhone1: "+phone1+"\nPhone2: "+phone2+"\nEmail: "+email+"\nWeb: "+web+"\nBirthday: "+birthday+"\n";
+    }
+     @Override public boolean equals(Object that)
+    {
+        if (compareTo((PeopleRecord) that)==0)return true;
+        return false;
+    }
+
 }
