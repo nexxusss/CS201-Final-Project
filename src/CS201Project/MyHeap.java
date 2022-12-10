@@ -58,9 +58,7 @@ class MyHeap<T extends  Comparable<T>> {
             {
                 return;
             }
-            T temp=MaxHeap.get(2*index+1);
-            MaxHeap.set(2*index+1, MaxHeap.get(index));
-            MaxHeap.set(index,temp);
+            swap(index,2*index+1);
             return;
         }
         if (MaxHeap.get(index).compareTo(MaxHeap.get(2*index+1))>0&&MaxHeap.get(index).compareTo(MaxHeap.get(2*index+2))>0)
@@ -68,9 +66,7 @@ class MyHeap<T extends  Comparable<T>> {
             return;
         }
         int largerChildIndex=getLargerChildIndex(index);
-        T temp=MaxHeap.get(largerChildIndex);
-        MaxHeap.set(largerChildIndex, MaxHeap.get(index));
-        MaxHeap.set(index,temp);
+        swap(index,largerChildIndex);
         swapForDelete(largerChildIndex);
     }
     void delete(T value)
@@ -85,16 +81,21 @@ class MyHeap<T extends  Comparable<T>> {
         }
 
     }
-
     void swap(int index1,int index2)
+    {
+        T temp=MaxHeap.get(index1);
+        MaxHeap.set(index1, MaxHeap.get(index2));
+        MaxHeap.set(index2, temp);
+    }
+
+    void swapUntilAdded(int index1,int index2)
     {
         if (index2==0)
         {
             if (MaxHeap.get(index1).compareTo(MaxHeap.get(index2))>0)
             {
-                T temp=MaxHeap.get(index1);
-                MaxHeap.set(index1, MaxHeap.get(index2));
-                MaxHeap.set(index2, temp);
+
+                swap(index1,index2);
             }
             return;
         }
@@ -102,15 +103,13 @@ class MyHeap<T extends  Comparable<T>> {
         {
             return;
         }
-        T temp=MaxHeap.get(index1);
-        MaxHeap.set(index1, MaxHeap.get(index2));
-        MaxHeap.set(index2, temp);
-        swap(index2,index2/2);
+        swap(index1,index2);
+        swapUntilAdded(index2,index2/2);
     }
     void add(T value)
     {
         MaxHeap.add(value);
-        swap(MaxHeap.size()-1,(MaxHeap.size()-1)/2);
+        swapUntilAdded(MaxHeap.size()-1,(MaxHeap.size()-1)/2);
     }
 
 
