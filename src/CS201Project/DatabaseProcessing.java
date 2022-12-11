@@ -65,26 +65,28 @@ public class DatabaseProcessing {
 		MyHeap<PeopleRecord> heap = new MyHeap<>();
 
 		insertInHeap(bst.root, heap);
+		//heap.printAsArray();
 		// Use the idea of heap sort to order (sort) all records in the heap
 		ArrayList<PeopleRecord> sortedRecords = new ArrayList<>();
+
 		while (!heap.isEmpty()) {
-			//sortedRecords.add(heap.delete());
-		}
-
-		// Store the sorted records in a proper data structure
-		// (e.g. List, Array, etc.)
-		this.sorted = sortedRecords;
-
+			sortedRecords.add(heap.removeFirstElement());
+		  }
+		
+		  // Store the sorted records in a proper data structure
+		  // (e.g. List, Array, etc.)
+		  this.sorted = sortedRecords;
+			
 	}
-
+	
 	public void insertInHeap(Node node, MyHeap<PeopleRecord> heap) {
-		if (node == null) {
-			return;
-		}
-		heap.add((PeopleRecord) node.record);
-		insertInHeap(node.left, heap);
-		insertInHeap(node.right, heap);
-	}
+	  if (node == null) {
+		    return;
+		  }
+	  heap.add((PeopleRecord) node.record);
+	  insertInHeap(node.left, heap);
+	  insertInHeap(node.right, heap);
+    }
 
 	public MyHashMap<String, Integer> getMostFrequentWords(int count, int len, String fileName) throws ShortLengthException, FileNotFoundException, IOException{
 

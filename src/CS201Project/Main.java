@@ -1,10 +1,9 @@
 package CS201Project;
 
-import java.util.ArrayList;
-import java.io.IOException;
-import java.lang.reflect.Field;
 
-import java.util.HashMap;
+import java.io.IOException;
+
+
 
 import CS201Project.DatabaseProcessing.ShortLengthException;
 
@@ -66,9 +65,17 @@ public class Main {
         
         //System.out.println(peopleRecordBSTGen.getInfo()[0]);
         //peopleRecordBSTGen.inorder();
-        dp.search("Marcia", "France", peopleRecordBSTGen);
+
+        //dp.search("Marcia", "France", peopleRecordBSTGen);
         
-        System.out.println(dp.getMostFrequentWords(3, 3, "people.txt"));
+        //System.out.println(dp.getMostFrequentWords(3, 3, "people.txt"));
+
+        //dp.search("Marcia", "France", peopleRecordBSTGen);
+        dp.sort(peopleRecordBSTGen);
+        System.out.println(dp.sorted);
+        //peopleRecordBSTGen.inorder();
+        //System.out.println(dp.getMostFrequentWords(3, 3, "people.txt"));
+
 
     }
 }

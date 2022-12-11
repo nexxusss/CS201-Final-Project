@@ -2,6 +2,7 @@ package CS201Project;
 
 import java.util.ArrayList;
 import java.util.ListIterator;
+import java.util.Optional;
 
 class MyHeap<T extends  Comparable<T>> {
     //This is a Max Heap
@@ -84,9 +85,11 @@ class MyHeap<T extends  Comparable<T>> {
         swapForDelete(largerChildIndex);
     }
 
-    void removeFirstElement()
+    T removeFirstElement()
     {
-        delete(MaxHeap.get(0));
+    	T elem  = MaxHeap.get(0);
+        delete(elem);
+        return elem;
     }
     void delete(T value)
     {
@@ -108,6 +111,8 @@ class MyHeap<T extends  Comparable<T>> {
             MaxHeap.set(index,lastElement);
             swapForDelete(index);
         }
+     
+        
 
     }
     void swap(int index1,int index2)
