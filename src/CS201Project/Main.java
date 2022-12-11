@@ -1,13 +1,18 @@
 package CS201Project;
 
 import java.util.ArrayList;
+import java.io.IOException;
 import java.lang.reflect.Field;
+<<<<<<< HEAD
 import java.util.HashMap;
+=======
+>>>>>>> 9779040 (DatabaseProcessing & errors fix)
 
 public class Main {
-    public static void main(String args[])
+    public static void main(String args[]) throws IOException, NoSuchFieldException, SecurityException
     {
         MyHeap<Integer> intHeap=new MyHeap<Integer>();
+        BSTGen<PeopleRecord>peopleRecordBSTGen=new BSTGen<PeopleRecord>();
        /* intHeap.add(5);
         intHeap.add(6);
         intHeap.add(1);
@@ -18,8 +23,14 @@ public class Main {
         intHeap.delete(5);
         intHeap.printAsArray();
         intHeap.delete(9);
+<<<<<<< HEAD
         intHeap.printAsArray();*/
        /*BSTGen<PeopleRecord>peopleRecordBSTGen=new BSTGen<PeopleRecord>();
+=======
+        intHeap.printAsArray();
+        
+        BSTGen<PeopleRecord>peopleRecordBSTGen=new BSTGen<PeopleRecord>();
+>>>>>>> 9779040 (DatabaseProcessing & errors fix)
         peopleRecordBSTGen.insert(new PeopleRecord("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
         peopleRecordBSTGen.insert(new PeopleRecord("2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2"));
         peopleRecordBSTGen.insert(new PeopleRecord("3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"));
@@ -39,6 +50,7 @@ public class Main {
         {
 
         }*/
+<<<<<<< HEAD
         MyHashMap<String,Integer> myMap= new MyHashMap<>();
         myMap.put("a",1);
         myMap.put("b",2);
@@ -46,5 +58,16 @@ public class Main {
         myMap.put("d",4);
         myMap.put("e",5);
         System.out.println(myMap);
+=======
+        //System.out.println(new java.io.File("").getAbsolutePath());
+        DatabaseProcessing dp = new DatabaseProcessing();
+        dp.loadData("people.txt", peopleRecordBSTGen);
+        
+        //System.out.println(peopleRecordBSTGen.getInfo()[0]);
+        //peopleRecordBSTGen.inorder();
+        dp.search("Marcia", "France", peopleRecordBSTGen);
+
+
+>>>>>>> 9779040 (DatabaseProcessing & errors fix)
     }
 }

@@ -9,7 +9,19 @@ class BSTPR extends BSTGen<PeopleRecord>{
     public BSTPR() {
         super();
     }
-
+    private class Node{
+		PeopleRecord record;
+		Node left;
+		Node right;
+		
+		public Node(PeopleRecord record) {
+			this.record = record;
+			this.right = null;
+			this.left = null;
+		}
+		
+	Node root;
+    /*
     // insert a PeopleRecord into the BST
     public void insert(PeopleRecord record) {
         super.insert(record);
@@ -19,5 +31,25 @@ class BSTPR extends BSTGen<PeopleRecord>{
     public ArrayList<Node> search(String givenName, String familyName) {
         return super.search(new PeopleRecord(givenName, familyName, "", "", "", "", "", "", "", "", "", "", ""));
     }
+    
+ 	*/
+	public ArrayList<Node> findByName(String givenName, String familyName) {
+		ArrayList<Node> result = new ArrayList<>();
+		findByNameHelper(root, givenName, familyName, result);
+		return result;
+	}
+	public void findByNameHelper(Node root, String givenName, String familyName, ArrayList<Node> result) {
+		if(root == null) {
+			return;
+		}
+		if(givenName.equals(root.record.getGivenName()) && familyName.equals(root.record.getFamilyName())) {
+			result.add(root);
+		}
+		
+		findByNameHelper(root.left, givenName, familyName, result);
+		findByNameHelper(root.right, givenName, familyName, result);
+	}
+    }
+    
 }
 

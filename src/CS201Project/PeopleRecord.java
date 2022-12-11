@@ -140,7 +140,6 @@ class PeopleRecord implements Comparable<PeopleRecord> {
     //TODO: optimized way?
    /* public int compareTo_recursive(PeopleRecord that,Field[] fieldsOfClass,int fieldsIterator)
     {
-
         if (fieldsIterator==fieldsOfClass.length)
         {
             return 0;
@@ -148,11 +147,8 @@ class PeopleRecord implements Comparable<PeopleRecord> {
         try{
             Class fieldType=fieldsOfClass[fieldsIterator].getType();
             Class[] interfaces=fieldType.getInterfaces();
-
             for (Class i:interfaces){
                 if (i.getName()=="java.lang.Comparable"||i.isPrimitive()){
-
-
                     if (fieldType.cast(fieldsOfClass[fieldsIterator].get(this)).compareTo(fieldType.cast(fieldsOfClass[fieldsIterator].get(that)))>0)
                     {
                         return 1;
@@ -164,13 +160,10 @@ class PeopleRecord implements Comparable<PeopleRecord> {
                     return compareTo_recursive(that,fieldsOfClass,fieldsIterator+1);
                 }
             }
-
         }
         catch(Exception e)
         {
-
         }
-
         return compareTo_recursive(that,fieldsOfClass,fieldsIterator+1);
     }*/
     public int compareTo(PeopleRecord that) {
@@ -194,7 +187,7 @@ class PeopleRecord implements Comparable<PeopleRecord> {
     }
     @Override public String toString()
     {
-        return "Given name: "+givenName+"\nFamily name: "+famName+"\nAdress: "+address+"\nCity: "+city+"\nCounty: "+county+"\nState: "+state+"\nZip: "+zip+"\nPhone1: "+phone1+"\nPhone2: "+phone2+"\nEmail: "+email+"\nWeb: "+web+"\nBirthday: "+birthday+"\n";
+        return "Given name: "+givenName+",\nFamily name: "+famName+",\nCompany name: "+companyName+",\nAdress: "+address+",\nCity: "+city+",\nCounty: "+county+",\nState: "+state+",\nZip: "+zip+",\nPhone1: "+phone1+",\nPhone2: "+phone2+",\nEmail: "+email+",\nWeb: "+web+",\nBirthday: "+birthday+"\n";
     }
      @Override public boolean equals(Object that)
     {

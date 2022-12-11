@@ -5,7 +5,7 @@ package CS201Project;
 import java.util.ArrayList;
 
 class MyBST {
-	private class Node{
+	public class Node{
 		PeopleRecord record;
 		Node left;
 		Node right;
