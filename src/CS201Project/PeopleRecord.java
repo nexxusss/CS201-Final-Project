@@ -5,7 +5,7 @@ package CS201Project;
 
 class PeopleRecord implements Comparable<PeopleRecord> {
 	String givenName;
-	private String famName;
+	String familyName;
 	private String companyName;
 	private String address;
 	private String city;
@@ -24,7 +24,7 @@ class PeopleRecord implements Comparable<PeopleRecord> {
 						String phone2, String email, String web,
 						String birthday)
 	{
-		this.givenName = givenName; this.famName = famName; this.companyName = companyName;
+		this.givenName = givenName; this.familyName = famName; this.companyName = companyName;
 		this.address = adress; this.city = city; this.county = county;
 		this.state = state; this.zip = zip; this.phone1 = phone1;
 		this.phone2 = phone2; this.email= email; this.web = web;
@@ -41,11 +41,11 @@ class PeopleRecord implements Comparable<PeopleRecord> {
     }
 
     public String getFamilyName() {
-        return famName;
+        return familyName;
     }
 
     public void setFamilyName(String familyName) {
-        this.famName = familyName;
+        this.familyName = familyName;
     }
 
     public String getCompanyName() {
@@ -168,7 +168,7 @@ class PeopleRecord implements Comparable<PeopleRecord> {
     }*/
     public int compareTo(PeopleRecord that) {
         int result = this.givenName.compareTo(that.givenName);
-        if(result == 0) result = this.famName.compareTo(that.famName);
+        if(result == 0) result = this.familyName.compareTo(that.familyName);
         if(result == 0) result = this.companyName.compareTo(that.companyName);
         if(result == 0) result = this.address.compareTo(that.address);
         if(result == 0) result = this.city.compareTo(that.city);
@@ -187,7 +187,7 @@ class PeopleRecord implements Comparable<PeopleRecord> {
     }
     @Override public String toString()
     {
-        return "Given name: "+givenName+",\nFamily name: "+famName+",\nCompany name: "+companyName+",\nAdress: "+address+",\nCity: "+city+",\nCounty: "+county+",\nState: "+state+",\nZip: "+zip+",\nPhone1: "+phone1+",\nPhone2: "+phone2+",\nEmail: "+email+",\nWeb: "+web+",\nBirthday: "+birthday+"\n";
+        return "Given name: "+givenName+",\nFamily name: "+familyName+",\nCompany name: "+companyName+",\nAdress: "+address+",\nCity: "+city+",\nCounty: "+county+",\nState: "+state+",\nZip: "+zip+",\nPhone1: "+phone1+",\nPhone2: "+phone2+",\nEmail: "+email+",\nWeb: "+web+",\nBirthday: "+birthday+"\n";
     }
      @Override public boolean equals(Object that)
     {

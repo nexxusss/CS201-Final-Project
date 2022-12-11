@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -45,8 +46,16 @@ public class DatabaseProcessing {
 	//TODO still need to make it search for given and family name
 	public void search(String givenName, String familyName, BSTGen bst) throws NoSuchFieldException, SecurityException {
 		ArrayList<PeopleRecord>found=new ArrayList<PeopleRecord>();
-	    found = bst.search(bst.root.record.getClass().getDeclaredField("givenName"), givenName);
-	    
+		ArrayList<String>target=new ArrayList<>();
+		target.add(givenName);
+		target.add(familyName);
+		
+		ArrayList<Field>target2=new ArrayList<>();
+		target2.add(bst.root.record.getClass().getDeclaredField("givenName"));
+		target2.add(bst.root.record.getClass().getDeclaredField("familyName"));
+		
+	    found = bst.search(target2, target);
+	    //System.out.println(found);
 	    for(PeopleRecord record: found) {
 	    	System.out.println(record);
 	    }

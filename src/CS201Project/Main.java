@@ -24,14 +24,14 @@ public class Main {
         intHeap.delete(5);
         intHeap.printAsArray();
         intHeap.delete(9);
-<<<<<<< HEAD
+
         intHeap.printAsArray();*/
        /*BSTGen<PeopleRecord>peopleRecordBSTGen=new BSTGen<PeopleRecord>();
-=======
+
         intHeap.printAsArray();
         
         BSTGen<PeopleRecord>peopleRecordBSTGen=new BSTGen<PeopleRecord>();
->>>>>>> 9779040 (DatabaseProcessing & errors fix)
+
         peopleRecordBSTGen.insert(new PeopleRecord("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
         peopleRecordBSTGen.insert(new PeopleRecord("2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2"));
         peopleRecordBSTGen.insert(new PeopleRecord("3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"));
@@ -62,13 +62,13 @@ public class Main {
 
         //System.out.println(new java.io.File("").getAbsolutePath());
         DatabaseProcessing dp = new DatabaseProcessing();
-        //dp.loadData("people.txt", peopleRecordBSTGen);
+        dp.loadData("people.txt", peopleRecordBSTGen);
         
         //System.out.println(peopleRecordBSTGen.getInfo()[0]);
         //peopleRecordBSTGen.inorder();
-        //dp.search("Marcia", "France", peopleRecordBSTGen);
+        dp.search("Marcia", "France", peopleRecordBSTGen);
         
-        System.out.println(dp.getMostFrequentWords(3, 3, "people.txt"));
+        //System.out.println(dp.getMostFrequentWords(3, 3, "people.txt"));
 
     }
 }
