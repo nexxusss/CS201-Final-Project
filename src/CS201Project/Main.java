@@ -2,6 +2,8 @@ package CS201Project;
 
 import java.util.ArrayList;
 import java.lang.reflect.Field;
+import java.util.HashMap;
+
 public class Main {
     public static void main(String args[])
     {
@@ -17,7 +19,7 @@ public class Main {
         intHeap.printAsArray();
         intHeap.delete(9);
         intHeap.printAsArray();*/
-        BSTGen<PeopleRecord>peopleRecordBSTGen=new BSTGen<PeopleRecord>();
+       /*BSTGen<PeopleRecord>peopleRecordBSTGen=new BSTGen<PeopleRecord>();
         peopleRecordBSTGen.insert(new PeopleRecord("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
         peopleRecordBSTGen.insert(new PeopleRecord("2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2"));
         peopleRecordBSTGen.insert(new PeopleRecord("3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"));
@@ -36,9 +38,13 @@ public class Main {
         catch(Exception e)
         {
 
-        }
-
-
-
+        }*/
+        MyHashMap<String,Integer> myMap= new MyHashMap<>();
+        myMap.put("a",1);
+        myMap.put("b",2);
+        myMap.put("c",3);
+        myMap.put("d",4);
+        myMap.put("e",5);
+        System.out.println(myMap);
     }
 }
