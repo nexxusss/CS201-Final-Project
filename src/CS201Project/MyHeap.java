@@ -84,6 +84,10 @@ class MyHeap<T extends  Comparable<T>> {
         swapForDelete(largerChildIndex);
     }
 
+    void removeFirstElement()
+    {
+        delete(MaxHeap.get(0));
+    }
     void delete(T value)
     {
         //When we want to delete an element we first have to remove the last element
