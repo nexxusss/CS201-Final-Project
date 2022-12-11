@@ -3,13 +3,14 @@ package CS201Project;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.lang.reflect.Field;
-<<<<<<< HEAD
+
 import java.util.HashMap;
-=======
->>>>>>> 9779040 (DatabaseProcessing & errors fix)
+
+import CS201Project.DatabaseProcessing.ShortLengthException;
+
 
 public class Main {
-    public static void main(String args[]) throws IOException, NoSuchFieldException, SecurityException
+    public static void main(String args[]) throws IOException, NoSuchFieldException, SecurityException, ShortLengthException
     {
         MyHeap<Integer> intHeap=new MyHeap<Integer>();
         BSTGen<PeopleRecord>peopleRecordBSTGen=new BSTGen<PeopleRecord>();
@@ -49,25 +50,25 @@ public class Main {
         catch(Exception e)
         {
 
-        }*/
-<<<<<<< HEAD
+        }
+
         MyHashMap<String,Integer> myMap= new MyHashMap<>();
         myMap.put("a",1);
         myMap.put("b",2);
         myMap.put("c",3);
         myMap.put("d",4);
         myMap.put("e",5);
-        System.out.println(myMap);
-=======
+        System.out.println(myMap);*/
+
         //System.out.println(new java.io.File("").getAbsolutePath());
         DatabaseProcessing dp = new DatabaseProcessing();
-        dp.loadData("people.txt", peopleRecordBSTGen);
+        //dp.loadData("people.txt", peopleRecordBSTGen);
         
         //System.out.println(peopleRecordBSTGen.getInfo()[0]);
         //peopleRecordBSTGen.inorder();
-        dp.search("Marcia", "France", peopleRecordBSTGen);
+        //dp.search("Marcia", "France", peopleRecordBSTGen);
+        
+        System.out.println(dp.getMostFrequentWords(3, 3, "people.txt"));
 
-
->>>>>>> 9779040 (DatabaseProcessing & errors fix)
     }
 }

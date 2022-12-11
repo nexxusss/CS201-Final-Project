@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 class MyHashMap <K,V>{
     //private ArrayList<Element<K,V>> ArrayListOfElements;
-    private final int SIZE=5;
+    private final int SIZE=500;
     private Element<K,V> [] ArrayOfElements;
     private int numberOfElements;
     MyHashMap()
@@ -76,7 +76,7 @@ class MyHashMap <K,V>{
             }
             i+=1;
         }
-        System.out.println("Element not found");
+        //System.out.println("Element not found");
         return null;
 
     }

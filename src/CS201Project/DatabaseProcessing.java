@@ -1,9 +1,11 @@
 package CS201Project;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import CS201Project.BSTGen.Node;
 
@@ -12,7 +14,6 @@ public class DatabaseProcessing {
 	public ArrayList<PeopleRecord> sorted = new ArrayList<>();
 	
 	public void loadData(String fileName, BSTGen bst) throws IOException {
-		int count = 0;
 		ArrayList<PeopleRecord> arr = new ArrayList<>();
 		try(BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
 			String currLine;
@@ -59,7 +60,7 @@ public class DatabaseProcessing {
 		// Use the idea of heap sort to order (sort) all records in the heap
 		ArrayList<PeopleRecord> sortedRecords = new ArrayList<>();
 		  while (!heap.isEmpty()) {
-		    sortedRecords.add(heap.delete());
+		    //sortedRecords.add(heap.delete());
 		  }
 		
 		  // Store the sorted records in a proper data structure
@@ -76,4 +77,63 @@ public class DatabaseProcessing {
 	  insertInHeap(node.left, heap);
 	  insertInHeap(node.right, heap);
     }
+	
+	public MyHashMap<String, Integer> getMostFrequentWords(int count, int len, String fileName) throws ShortLengthException, FileNotFoundException, IOException{
+		
+		if(len < 3) {
+		    // Throw a ShortLengthException
+		    throw new ShortLengthException("Error: The minimum length of a word must be at least 3 characters.");
+		}
+		
+		ArrayList<String> mostFrequentWords = new ArrayList<>();
+		MyHashMap<String, Integer> map = new MyHashMap<>();
+		
+		ArrayList<String> arr = new ArrayList<>();
+		try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
+			String currLine;
+			while((currLine = reader.readLine()) != null) {
+				String[] phrase = currLine.split(";");
+				for(String ph:phrase) {
+					arr.add(ph);
+				}
+			}
+			
+			// loading all words that match requirements to an array
+			ArrayList<String> arr2 = new ArrayList<>();
+			for(String ph: arr) {
+				if(ph.contains(" ")) {
+					String[] singleWord = ph.split("\\W+");
+					for(String word: singleWord) {
+						if(word.matches("[a-zA-Z]+") && word.length() >= len)
+							arr2.add(word);
+					}
+				} else if(!ph.contains(" ") && ph.matches("[a-zA-Z]+") && ph.length() >= len) {
+					arr2.add(ph);
+				}
+			}
+			// load all element in a Hash Map
+			for(String word: arr2) {
+				
+				Integer value = map.getValue(word);
+				if(value == null) {
+					//map.put(word, 1);
+				} else {
+					//map.put(word, value + 1);
+				}
+				
+				System.out.println(word);
+			}
+		
+		}
+		return map;
+	}
+		
+	public class ShortLengthException extends Exception {
+		  public ShortLengthException() {
+		    super();
+		  }
+		  public ShortLengthException(String message) {
+		    super(message);
+		  }
+		}
 }
