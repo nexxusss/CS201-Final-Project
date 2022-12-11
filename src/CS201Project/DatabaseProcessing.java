@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.lang.reflect.Field;
 
 import CS201Project.BSTGen.Node;
+import CS201Project.MyHashMap.Element;
 
 public class DatabaseProcessing {
 
@@ -88,7 +89,7 @@ public class DatabaseProcessing {
 	  insertInHeap(node.right, heap);
     }
 
-	public MyHashMap<String, Integer> getMostFrequentWords(int count, int len, String fileName) throws ShortLengthException, FileNotFoundException, IOException{
+	public void getMostFrequentWords(int count, int len, String fileName) throws ShortLengthException, FileNotFoundException, IOException{
 
 		if(len < 3) {
 			// Throw a ShortLengthException
@@ -129,14 +130,21 @@ public class DatabaseProcessing {
 				if(value == null) {
 					map.put(word, 1);
 				} else {
-					System.out.println(value);
+					//System.out.println(value);
 					map.set(word, value + 1);
 				}
 			}
-
-
+			MyHeap heap = new MyHeap();
+			for(Element elem:map.getArrayOfElements()) {
+				if(elem != null) {
+					heap.add(elem);
+				}
+			}
+			for(int i = 0; i < count; i++) {
+				System.out.println(((Element) heap.removeFirstElement()).getKey());
+			}
 		}
-		return map;
+
 	}
 
 	public class ShortLengthException extends Exception {

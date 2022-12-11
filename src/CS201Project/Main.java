@@ -71,10 +71,10 @@ public class Main {
         //System.out.println(dp.getMostFrequentWords(3, 3, "people.txt"));
 
         //dp.search("Marcia", "France", peopleRecordBSTGen);
-        dp.sort(peopleRecordBSTGen);
-        System.out.println(dp.sorted);
+        //dp.sort(peopleRecordBSTGen);
+        //System.out.println(dp.sorted);
         //peopleRecordBSTGen.inorder();
-        //System.out.println(dp.getMostFrequentWords(3, 3, "people.txt"));
+        dp.getMostFrequentWords(10, 3, "people.txt");
 
 
     }

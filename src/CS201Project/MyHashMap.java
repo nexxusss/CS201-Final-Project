@@ -13,6 +13,10 @@ class MyHashMap <K,V>{
         ArrayOfElements= new Element[SIZE];
         numberOfElements=0;
     }
+    
+    MyHashMap<K, V>.Element<K, V>[] getArrayOfElements(){
+    	return ArrayOfElements;
+    }
     //put, get, search and delete.
     void set (K key, V value)
     {
@@ -163,7 +167,7 @@ class MyHashMap <K,V>{
             numberOfElements-=1;
         }
     }
-    class Element<K,V>
+    class Element<K,V> implements Comparable
     {
         private K key;
         private V value;
@@ -181,14 +185,25 @@ class MyHashMap <K,V>{
         V getValue(){return value;}
         void setKey(K key){this.key=key;}
         void setValue(V value){this.value=value;}
+        
+        //public int compareTo(Element e) {
+        	//return ((Integer)this.getValue()).compareTo((Integer) e.getValue());
+        //}
+		@Override
+		public int compareTo(Object o) {
+			// TODO Auto-generated method stub
+			return ((Integer)this.getValue()).compareTo((Integer) ((MyHashMap<K, V>.Element<K, V>) o).getValue());
+		}
     }
+    
+    
     @Override public String toString()
     {
         String result="";
         for (int i =0 ; i < SIZE; i ++)
         {
-            System.out.println(i);
-            System.out.println(ArrayOfElements[i]);
+            //System.out.println(i);
+            //System.out.println(ArrayOfElements[i]);
             if (ArrayOfElements[i]==null)
             {
                 continue;
