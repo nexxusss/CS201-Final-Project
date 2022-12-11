@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 class MyHashMap <K,V>{
     //private ArrayList<Element<K,V>> ArrayListOfElements;
-    private final int SIZE=500;
+    private final int SIZE=5021;
     private Element<K,V> [] ArrayOfElements;
     private int numberOfElements;
     MyHashMap()
@@ -14,6 +14,16 @@ class MyHashMap <K,V>{
         numberOfElements=0;
     }
     //put, get, search and delete.
+    void set (K key, V value)
+    {
+    	int index= findPosition(key);
+    	if (index==-1)
+    	{
+    		System.out.println("Element not found");
+    		return;
+    	}
+    	ArrayOfElements[index].setValue(value);
+    }
     void put(K key, V value)
     {
         if (numberOfElements==SIZE)
@@ -22,14 +32,14 @@ class MyHashMap <K,V>{
             return;
         }
         Element<K,V> newElement= new Element<K,V>(key,value);
-        int index= key.hashCode()%SIZE;
+        int index= (key.hashCode()&0x7fffffff)%SIZE;
         /*if (ArrayListOfElements.get(index)!=null)
         {
             quadriaticProbing(key.hashCode(),1,newElement);
         }*/
         if (ArrayOfElements[index]!=null)
         {
-            quadriaticProbing(key.hashCode(),1,newElement);
+            quadriaticProbing(index,1,newElement);
             return;
         }
         //ArrayListOfElements.set(newElement.hashCode()%SIZE,newElement);
@@ -68,11 +78,11 @@ class MyHashMap <K,V>{
             }
             i+=1;
         }*/
-        while(ArrayOfElements[(key.hashCode()+i*i)%SIZE]!=null)
+        while(ArrayOfElements[((key.hashCode()&0x7fffffff)+i*i)%SIZE]!=null)
         {
-            if (ArrayOfElements[(key.hashCode()+i*i)%SIZE].getKey()==key)
+            if (ArrayOfElements[((key.hashCode()&0x7fffffff)+i*i)%SIZE].getKey().equals(key))
             {
-                return  ArrayOfElements[(key.hashCode()+i*i)%SIZE].getValue();
+                return  ArrayOfElements[((key.hashCode()&0x7fffffff)+i*i)%SIZE].getValue();
             }
             i+=1;
         }
@@ -91,11 +101,11 @@ class MyHashMap <K,V>{
             }
             i+=1;
         }*/
-        while(ArrayOfElements[(key.hashCode()+i*i)%SIZE]!=null)
+        while(ArrayOfElements[((key.hashCode()&0x7fffffff)+i*i)%SIZE]!=null)
         {
-            if (ArrayOfElements[(key.hashCode()+i*i)%SIZE].getKey()==key)
+            if (ArrayOfElements[((key.hashCode()&0x7fffffff)+i*i)%SIZE].getKey().equals(key))
             {
-                return  ArrayOfElements[(key.hashCode()+i*i)%SIZE];
+                return  ArrayOfElements[((key.hashCode()&0x7fffffff)+i*i)%SIZE];
             }
             i+=1;
         }
@@ -114,11 +124,11 @@ class MyHashMap <K,V>{
             }
             i+=1;
         }*/
-        while(ArrayOfElements[(key.hashCode()+i*i)%SIZE]!=null)
+        while(ArrayOfElements[((key.hashCode()&0x7fffffff)+i*i)%SIZE]!=null)
         {
-            if (ArrayOfElements[(key.hashCode()+i*i)%SIZE].getKey()==key)
+            if (ArrayOfElements[((key.hashCode()&0x7fffffff)+i*i)%SIZE].getKey().equals(key))
             {
-                return  (key.hashCode()+i*i)%SIZE;
+                return  ((key.hashCode()&0x7fffffff)+i*i)%SIZE;
             }
             i+=1;
         }
@@ -136,7 +146,7 @@ class MyHashMap <K,V>{
         }*/
         for (int i =0  ; i < SIZE; i ++)
         {
-            if (ArrayOfElements[i].getValue()==value)
+            if (ArrayOfElements[i].getValue().equals(value))
             {
                 return ArrayOfElements[i].getKey();
             }
@@ -184,7 +194,7 @@ class MyHashMap <K,V>{
                 continue;
             }
             result+=ArrayOfElements[i].getKey()+" | "+ArrayOfElements[i].getValue();
-            result+="\n_____________________________________________________________\n";
+            result+="\n";
         }
         return result;
     }

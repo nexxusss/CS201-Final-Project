@@ -68,7 +68,7 @@ public class Main {
         //peopleRecordBSTGen.inorder();
         dp.search("Marcia", "France", peopleRecordBSTGen);
         
-        //System.out.println(dp.getMostFrequentWords(3, 3, "people.txt"));
+        System.out.println(dp.getMostFrequentWords(3, 3, "people.txt"));
 
     }
 }
