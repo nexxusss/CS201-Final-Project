@@ -6,9 +6,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 import java.lang.reflect.Field;
 
 import CS201Project.BSTGen.Node;
+import CS201Project.DatabaseProcessing.ShortLengthException;
 import CS201Project.MyHashMap.Element;
 
 public class DatabaseProcessing {
@@ -88,8 +90,11 @@ public class DatabaseProcessing {
 	  insertInHeap(node.left, heap);
 	  insertInHeap(node.right, heap);
     }
-
-	public void getMostFrequentWords(int count, int len, String fileName) throws ShortLengthException, FileNotFoundException, IOException{
+	
+	public void getMostFrequentWords(int count, int len) throws FileNotFoundException, ShortLengthException, IOException {
+		getMostFrequentWordsHelper(count, len, "people.txt");
+	}
+	public void getMostFrequentWordsHelper(int count, int len, String fileName) throws ShortLengthException, FileNotFoundException, IOException{
 
 		if(len < 3) {
 			// Throw a ShortLengthException
@@ -141,7 +146,8 @@ public class DatabaseProcessing {
 				}
 			}
 			for(int i = 0; i < count; i++) {
-				System.out.println(((Element) heap.removeFirstElement()).getKey());
+				Element elem = (Element) heap.removeFirstElement();
+				System.out.println(elem.getKey() + "|" + elem.getValue());
 			}
 		}
 

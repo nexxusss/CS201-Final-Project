@@ -2,8 +2,7 @@ package CS201Project;
 
 
 import java.io.IOException;
-
-
+import java.util.Scanner;
 
 import CS201Project.DatabaseProcessing.ShortLengthException;
 
@@ -11,71 +10,64 @@ import CS201Project.DatabaseProcessing.ShortLengthException;
 public class Main {
     public static void main(String args[]) throws IOException, NoSuchFieldException, SecurityException, ShortLengthException
     {
+        run();
+    } 
+    
+    public static void run() throws IOException, ShortLengthException {
         MyHeap<Integer> intHeap=new MyHeap<Integer>();
         BSTGen<PeopleRecord>peopleRecordBSTGen=new BSTGen<PeopleRecord>();
-       /* intHeap.add(5);
-        intHeap.add(6);
-        intHeap.add(1);
-        intHeap.add(8);
-        intHeap.add(2);
-        intHeap.add(9);
-        intHeap.printAsArray();
-        intHeap.delete(5);
-        intHeap.printAsArray();
-        intHeap.delete(9);
-
-        intHeap.printAsArray();*/
-       /*BSTGen<PeopleRecord>peopleRecordBSTGen=new BSTGen<PeopleRecord>();
-
-        intHeap.printAsArray();
         
-        BSTGen<PeopleRecord>peopleRecordBSTGen=new BSTGen<PeopleRecord>();
-
-        peopleRecordBSTGen.insert(new PeopleRecord("1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"));
-        peopleRecordBSTGen.insert(new PeopleRecord("2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2", "2"));
-        peopleRecordBSTGen.insert(new PeopleRecord("3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3", "3"));
-        peopleRecordBSTGen.insert(new PeopleRecord("3", "2", "1", "2", "3", "3", "3", "2", "2", "1", "3", "3", "3"));
-        peopleRecordBSTGen.insert(new PeopleRecord("1", "1", "1", "2", "3", "3", "3", "2", "2", "1", "3", "3", "3"));
-        ArrayList<PeopleRecord>found=new ArrayList<PeopleRecord>();
-        peopleRecordBSTGen.inorder();
-        try{
-            found=peopleRecordBSTGen.search(peopleRecordBSTGen.root.record.getClass().getDeclaredField("givenName"),"1");
-            System.out.println(peopleRecordBSTGen.root.record.getClass().getDeclaredField("givenName").get(peopleRecordBSTGen.root.record));
-            for (int i =0 ; i < found.size(); i ++)
-            {
-                System.out.println(found.get(i));
-            }
-        }
-        catch(Exception e)
-        {
-
-        }
-
-        MyHashMap<String,Integer> myMap= new MyHashMap<>();
-        myMap.put("a",1);
-        myMap.put("b",2);
-        myMap.put("c",3);
-        myMap.put("d",4);
-        myMap.put("e",5);
-        System.out.println(myMap);*/
-
-        //System.out.println(new java.io.File("").getAbsolutePath());
+        // creating object of DatabaseProcessing
         DatabaseProcessing dp = new DatabaseProcessing();
         dp.loadData("people.txt", peopleRecordBSTGen);
-        
-        //System.out.println(peopleRecordBSTGen.getInfo()[0]);
-        //peopleRecordBSTGen.inorder();
+    	boolean quit = false;
+    	System.out.println("Choose action(1/2/3/4/):\n1.Print Elements of BST.\n2.Search for element."
+				+ "\n3.Find top N most frequent words.\n4.Print MaxHeap sorted elements.\n5.Quit.");
+    	while(!quit) {
+    		System.out.print("Your choice --> ");
+    		Scanner in = new Scanner(System.in);
+    		int input = in.nextInt();
+    		switch(input) {
+    			case 5:
+    				quit = true;
+    				break;
+    			case 1:
+    				peopleRecordBSTGen.inorder();
+    				break;
+    			case 2:
+    				try {
+	    				System.out.print("Enter given name to search: ");
+	    				String given = in.next();
+	    				System.out.print("Enter family name to search: ");
+	    				String family = in.next();
+	    				
+	    				dp.search(given, family, peopleRecordBSTGen);
+	    				break;
 
-        //dp.search("Marcia", "France", peopleRecordBSTGen);
-        
-        //System.out.println(dp.getMostFrequentWords(3, 3, "people.txt"));
-
-        //dp.search("Marcia", "France", peopleRecordBSTGen);
-        //dp.sort(peopleRecordBSTGen);
-        //System.out.println(dp.sorted);
-        //peopleRecordBSTGen.inorder();
-        dp.getMostFrequentWords(10, 3, "people.txt");
-
-
+    				} catch(Exception e) {
+    					System.out.println(e);
+    					System.out.println("Try again!");
+    					break;
+    				}
+    				
+    			case 3:
+    				try {
+	    				System.out.print("Enter N for Top N most frequent words: ");
+	    				int count = in.nextInt();
+	    				System.out.print("Enter minimum length of words: ");
+	    				int len = in.nextInt();
+	    				dp.getMostFrequentWords(count, len);
+	    				break;
+    				} catch(Exception e) {
+    					System.out.println(e);
+    					break;
+    				}
+    			case 4:
+    				dp.sort(peopleRecordBSTGen);
+    				System.out.println(dp.sorted);
+    				break;
+    		}
+    	}
+    	
     }
 }
